@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int n,i=0,j=0,ch,k,x,y,burst_time[100];
+	char process[100][5];
+	printf("ASSUMPTIONS:-\n\n1. SEMAPHORE(process name)=1 means process is in critical section\n\n2. SEMAPHORE(process name)=0 means processor is waiting for the process\n\n");
+	
+	      printf("\n\nENTER THE NUMBER OF PROCESSES: \n\n");
+		  scanf("%d",&n);
+		  x=n;	
+		  for(k=0;k<n;k++)
+		  {
+	      printf("\n\n ENTER THE PROCESS NAME AND BURST TIME OF THE PROCESS %d :\n",k+1);fflush(stdin);	
+	       gets(process[k]);
+	       fflush(stdin);
+	       scanf("%d",&burst_time[k]);
+	       
+	      }
+	      
+	    
+	    	 
+	        for(k=0;k<n;k++)
+			 {system("cls");
+			 	printf("\nSTATUS OF THE BUSY WAITING QUEUE with process name and burst time :\n");
+	    	     for(x=k;x<n;x++)
+	    	      printf("%s  %d\n\n",process[x],burst_time[x]);
+	    	printf("process %d enters the CRITICAL SECTION WITH BURST TIME OF %d seconds\n\n",k+1,burst_time[k]);
+			 	printf("SEMAPHORE(process: %s)=1\n\n",process[k]);
+			 	
+			 	printf("AFTER %d SECONDS, SEMAPHORE(%s)=0\n\n",burst_time[k],process[k]);
+			 	printf("\n\n\nPress any key to see the further process...\n\n");
+			 	 getch();
+			 	
+			 }	 
+	    	
+	    	
+	    	
+		   
+	  
+ return 0;	
+}
