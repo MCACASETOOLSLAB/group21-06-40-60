@@ -1,0 +1,12 @@
+step 1 : this is implementation of monitor module for philospher dinning problem
+step 2:  as my concern for five philospher five spoons are available at initial stage
+step 3:  implementation of monitor for managing these resource:
+step 4:  monitor process will decide who will take the spoons first
+            after selecting the option 1
+step 5: 
+            resource allocate 
+                                     if resource is available for that philospher
+            resource not allocate 
+                                     if resource is not available for that philospher,then     philospher have to wait until resource is release
+step 6: select option 2 for release the resource, if allocated by any other process 
+          
