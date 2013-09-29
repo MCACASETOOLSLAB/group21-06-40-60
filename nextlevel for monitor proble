@@ -1,0 +1,142 @@
+#include<stdio.h>
+#include<windows.h>
+int philospher[5]={1,2,3,4,5},spoons[5]={1,1,1,1,1};
+int k,uses[]={0,0,0,0,0};
+
+using namespace std;
+
+HANDLE h=GetStdHandle(STD_OUTPUT_HANDLE);
+
+void paint(int n)
+{
+   SetConsoleTextAttribute(h,n);
+}
+
+int call()
+{
+    int i;
+    printf("\n\t\t\t\t\t\t\tRESOURCE DETAILS:\n");
+    printf("\n\t\tPHILOSPHER: ");
+    for(i=0;i<5;i++)
+    {
+         printf("\t\t%d",philospher[i]);
+    }
+    printf("\n\n\t\tSPOONS: ");
+    for(i=0;i<5;i++)
+    {
+       printf("\t\t%d",spoons[i]);
+    }
+}
+int release(int a)
+{
+ paint(a);
+ int n;
+ int l;
+ printf("\n\tENTER THE PHILOSPHER TABLE NO FOR RELEASE THE SPOONS\t");
+ scanf("%d",&n);
+ l=n;
+if(n!=1&&uses[n-1]==1)
+ {
+        uses[n-1]=0;
+        printf("\nRESOURCE RELEASE BY PHILOSOPHER\t%d",n);
+        spoons[n-2]=spoons[n-1]=1;
+        call();
+ }
+else if(l==1&& uses[n-1]==1)
+{
+         uses[n-1]=0;
+         MessageBox(NULL,"RESOURCE RELEASE BY PHILOSOPHER 1","STATUS",MB_OK|MB_ICONINFORMATION);
+         spoons[0]=spoons[4]=1;
+         call();
+}
+else
+ {
+     MessageBox(NULL,"SORRY THIS RESOURCE IS ALREADY RELEASE","STATUS",MB_OK|MB_ICONERROR);
+ }
+}
+int start(int a)
+{
+
+paint(a);int l=0;
+for(int i=0;i<5;i++)
+if(uses[i]==0)
+l++;
+if(l==5)
+k=0;
+  
+if(k==0)
+  {
+        
+       MessageBox(NULL,"RESOURCE ALLOCATED FOR PHILOSOPHER 1 AND 3 BY MONITO","STATUS",MB_OK|MB_ICONINFORMATION);
+       printf("\nRESOURCE ALLOCATED FOR PHILOSOPHER 1 AND 3 BY MONITO");
+       uses[0]=1;
+       uses[2]=1;
+       spoons[0]=0,spoons[4]=0,spoons[1]=spoons[2]=0;
+       call();
+   
+}
+ else if((spoons[0]==1&&spoons[4]==1)&&uses[0]==0)
+ {
+        spoons[0]==0,spoons[4]==0;
+        call();
+ }
+ else if((spoons[1]==1&&spoons[2]==1)&&uses[2]==0)
+     {
+      uses[2]=1;
+      MessageBox(NULL,"RESOURCE ALLOCATED FOR PHILOSOPHER 3 BY MONITO","STATUS",MB_OK|MB_ICONINFORMATION);
+      spoons[1]=0,spoons[2]=0;
+      call();
+   
+}
+    else if((spoons[0]==1&&spoons[1]==1)&&uses[1]==0)
+     {
+      uses[1]=1;
+      MessageBox(NULL,"RESOURCE ALLOCATED FOR PHILOSOPHER 2 BY MONITO","STATUS",MB_OK|MB_ICONINFORMATION);
+      spoons[0]=spoons[1]=0;
+    call();
+}
+     else if(spoons[2]==1&&spoons[3]==1)
+     {
+      uses[3]=1;
+      MessageBox(NULL,"RESOURCE ALLOCATED FOR PHILOSOPHER 4 BY MONITO","STATUS",MB_OK|MB_ICONINFORMATION);
+       spoons[2]=spoons[3]=0;
+     call();
+}
+     else if((spoons[3]==1&&spoons[4]==1)&&uses[4]==0)
+     {
+      uses[4]=1;
+      MessageBox(NULL,"RESOURCE ALLOCATED BY PHILOSOPHER 5","STATUS",MB_OK|MB_ICONINFORMATION);
+      spoons[3]=0,spoons[4]=0;
+    call();
+     }
+     else
+     {
+       MessageBox(NULL,"SORRY RESOURCE IS NOT FREE YOU HAVE TO WAIT UNTIL RELEASE","STATUS",MB_OK|MB_ICONERROR);
+     }
+      k++;
+ }
+int main()
+{
+   paint(12);
+   int n,i;
+   call();
+  
+  do
+   {
+   
+   
+          printf("\n1.START MONITOR\n2.RELEASE THE RESOURCE\n3.EXIT");
+          printf("\n\n\tENTER YOUR CHOICE NO:\t");
+          scanf("%d",&n);
+          if(n==1)
+          {
+           start(13);
+          }
+          else if(n==2)
+          release(14);
+          
+
+  }while(n!=3);
+}
+
+    
