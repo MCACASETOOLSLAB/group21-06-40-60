@@ -1,0 +1,53 @@
+class customer{
+  int amount=10000;
+
+   synchronized void withdraw(int amount){
+   try{
+         System.out.println("going to withdraw....");
+         Thread.sleep(4000);
+     }catch(Exception e){}
+   if(this.amount<amount)
+     {
+         try{
+                System.out.println("Less balance:wait for deposit....");
+                Thread.sleep(4000);
+          
+                wait();
+                }catch(Exception e){}
+}
+this.amount-=amount;
+  try{
+
+           System.out.println("withdraw completed....");    Thread.sleep(4000);
+           Thread.sleep(6000);
+      }catch(Exception e){}
+}
+  synchronized void deposit(int amount){
+   try{
+
+           System.out.println("going to deposit.....");
+           Thread.sleep(6000);
+      }catch(Exception e){}
+
+  this.amount+=amount;
+   try{
+
+            System.out.println("deposit completed....");
+           Thread.sleep(6000);
+      }catch(Exception e){}
+
+  notify();
+ }
+}
+class ATM{
+public static void main(String args[])
+{ 
+   final customer c=new customer();
+   new Thread(){
+   public void run(){c.withdraw(15000);}  
+}.start();
+
+new Thread(){
+public void run(){c.deposit(10000);}
+}.start();
+}}
